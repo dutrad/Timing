@@ -1,6 +1,6 @@
 #include "Logger.hpp"
 
-Logger::getInstance(){
+Logger& Logger::getInstance(){
     if(pInstance == 0){
         Lock
         if(pInstance == 0){
@@ -10,7 +10,7 @@ Logger::getInstance(){
     return instance;
 }
 
-Logger::LogMsg(const std::string& p_Text){
+void Logger::LogMsg(const std::string& p_Text){
 
 }
 
