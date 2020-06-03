@@ -6,7 +6,7 @@
 
 class Logger{
 public:
-    static Logger& getInstance(),
+    static Logger* getInstance();
     void LogMsg(const std::string& p_Text);
 
     Logger(const Logger&) = delete;
@@ -15,13 +15,14 @@ public:
 private:
     Logger();
     ~Logger();
-    static Logger* pInstance;
+    static Logger* m_Instance;
+    static std::mutex pMutex;
     
     std::thread tLog;
     void mainLoop();
-    static bool m_Exit = false;
+    bool m_Exit;
 
-    std::mutex mtx;
-    static std:queue<std::string> m_Queue;
+    std::mutex qMutex;
+    static std::queue<std::string> m_Queue;
 
-}
+};

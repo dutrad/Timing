@@ -1,22 +1,23 @@
 #include "Logger.hpp"
 
-Logger& Logger::getInstance(){
-    if(pInstance == 0){
-        Lock
-        if(pInstance == 0){
-            pInstance = new Logger();
+Logger* Logger::getInstance(){
+    if(m_Instance == 0){
+        pMutex.lock();
+        if(m_Instance == 0){
+            m_Instance = new Logger();
         }
     }
-    return instance;
+    pMutex.unlock();
+    return m_Instance;
 }
 
 void Logger::LogMsg(const std::string& p_Text){
-    mtx.lock();
-    m_Queue.push(p_Text)
-    mtx.unlock();
+    qMutex.lock();
+    m_Queue.push(p_Text);
+    qMutex.unlock();
 }
 
-Logger::Logger(){
+Logger::Logger() : m_Exit(false){
     tLog.start
 }
 
