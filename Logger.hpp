@@ -1,4 +1,8 @@
-
+#include <string>
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <iostream> 
 
 class Logger{
 public:
@@ -10,8 +14,14 @@ public:
 
 private:
     Logger();
+    ~Logger();
     static Logger* pInstance;
+    
     std::thread tLog;
+    void mainLoop();
+    static bool m_Exit = false;
 
-    void Loop();
+    std::mutex mtx;
+    static std:queue<std::string> m_Queue;
+
 }
