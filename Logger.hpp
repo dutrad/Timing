@@ -16,9 +16,8 @@ private:
     Logger();
     ~Logger();
     static Logger* m_Instance;
-    static std::mutex pMutex;
     
-    std::thread tLog;
+    std::thread m_Thread;
     void mainLoop();
     bool m_Exit;
 
