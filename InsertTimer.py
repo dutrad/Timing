@@ -6,13 +6,10 @@ fileName = sys.argv[1]
 file = open(fileName, "r")
 fileText = file.read()
 file.close()
-print(fileText)
 
 # Insert class construct with regex
-reg = '([a-zA-Z_][a-zA-Z0-9_]*)([\n\r\s]+)([a-zA-Z_][a-zA-Z0-9_]*)::([a-zA-Z_][a-zA-Z0-9_]*)\((.*)\)([\n\r\s]+)\{'
-newFileContent = re.sub(reg, r'\1\2\3::\4(\5)\n{Timer("\3::\4");', fileText)
-
-print(newFileContent)
+reg = '([a-zA-Z_][a-zA-Z0-9_]*)::(\~|)([a-zA-Z_][a-zA-Z0-9_]*)\((.*)\)(\n|)\{'
+newFileContent = re.sub(reg, r'\1::\2(\3){\nTimer("\1::\2");', fileText)
 
 # Save new file
 file = open(sys.argv[1], "w+")
