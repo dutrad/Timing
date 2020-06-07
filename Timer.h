@@ -19,7 +19,7 @@ public:
 
         std::chrono::duration<double, std::micro> duration = endPoint - m_startingPoint;
 
-        Logger::getInstance.log(m_functionName + ":" + std::to_string(duration.count()) + "\xC2\xB5s \n");
+        Logger::getInstance->LogMsg(m_functionName + ":" + std::to_string(duration.count()) + "\xC2\xB5s \n");
     };
 
 private:
