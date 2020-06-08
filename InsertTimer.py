@@ -8,7 +8,7 @@ fileText = file.read()
 file.close()
 
 # Insert class construct with regex
-reg = '([a-zA-Z_][a-zA-Z0-9_]*)::(\~|)([a-zA-Z_][a-zA-Z0-9_]*)\((.*)\)(\n|)\{'
+reg = '([a-zA-Z0-9_]*)::([\~a-zA-Z0-9_]*)\((.*)\)(\n|)\{'
 newFileContent = re.sub(reg, r'\1::\2(\3){\nTimer("\1::\2");', fileText)
 
 # Save new file
