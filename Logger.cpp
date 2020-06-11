@@ -1,4 +1,4 @@
-#include "Logger.hpp"
+#include "Logger.h"
 
 #include <chrono>
 #include <thread>
@@ -17,7 +17,7 @@ void Logger::LogMsg(const std::string& p_Text){
     qMutex.unlock();
 }
 
-Logger::Logger() : m_Exit(false), m_Thread(&Logger::mainLoop){}
+Logger::Logger() : m_Exit(false), m_Thread(&Logger::mainLoop, this){}
 
 Logger::~Logger(){
     m_Exit = true;

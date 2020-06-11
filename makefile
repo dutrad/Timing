@@ -9,13 +9,13 @@ CFLAGS  = -g -Wall
 #
 default: Main
 
-Main: Logger.o Timer.h
-	$(CC) $(CFLAGS) -o Main Logger.o
+Main: Main.cpp Logger.o Timer.h
+	$(CC) $(CFLAGS) -c Main.cpp -o Main
 
 #Timer.o:  Timer.h Logger.o
 #	$(CC) $(CFLAGS) -c Timer.h
 
-Logger.o:  Logger.cpp Logger.hpp
+Logger.o: Logger.cpp Logger.h
 	$(CC) $(CFLAGS) -c Logger.cpp
 
 clean: 
